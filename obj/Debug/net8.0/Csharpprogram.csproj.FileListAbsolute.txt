@@ -1,0 +1,14 @@
+C:\Users\91797\OneDrive\Desktop\Csharpprogram\bin\Debug\net8.0\Csharpprogram.exe
+C:\Users\91797\OneDrive\Desktop\Csharpprogram\bin\Debug\net8.0\Csharpprogram.deps.json
+C:\Users\91797\OneDrive\Desktop\Csharpprogram\bin\Debug\net8.0\Csharpprogram.runtimeconfig.json
+C:\Users\91797\OneDrive\Desktop\Csharpprogram\bin\Debug\net8.0\Csharpprogram.dll
+C:\Users\91797\OneDrive\Desktop\Csharpprogram\bin\Debug\net8.0\Csharpprogram.pdb
+C:\Users\91797\OneDrive\Desktop\Csharpprogram\obj\Debug\net8.0\Csharpprogram.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\91797\OneDrive\Desktop\Csharpprogram\obj\Debug\net8.0\Csharpprogram.AssemblyInfoInputs.cache
+C:\Users\91797\OneDrive\Desktop\Csharpprogram\obj\Debug\net8.0\Csharpprogram.AssemblyInfo.cs
+C:\Users\91797\OneDrive\Desktop\Csharpprogram\obj\Debug\net8.0\Csharpprogram.csproj.CoreCompileInputs.cache
+C:\Users\91797\OneDrive\Desktop\Csharpprogram\obj\Debug\net8.0\Csharpprogram.dll
+C:\Users\91797\OneDrive\Desktop\Csharpprogram\obj\Debug\net8.0\refint\Csharpprogram.dll
+C:\Users\91797\OneDrive\Desktop\Csharpprogram\obj\Debug\net8.0\Csharpprogram.pdb
+C:\Users\91797\OneDrive\Desktop\Csharpprogram\obj\Debug\net8.0\Csharpprogram.genruntimeconfig.cache
+C:\Users\91797\OneDrive\Desktop\Csharpprogram\obj\Debug\net8.0\ref\Csharpprogram.dll
