@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encap", "Encap\Encap.csproj", "{55382CA1-E7C7-E17C-52C7-C600BC00901D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55382CA1-E7C7-E17C-52C7-C600BC00901D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55382CA1-E7C7-E17C-52C7-C600BC00901D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55382CA1-E7C7-E17C-52C7-C600BC00901D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55382CA1-E7C7-E17C-52C7-C600BC00901D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE4C36DE-087E-45F1-88D5-0A84404B0F3D}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,14 @@
+C:\Users\91797\OneDrive\Desktop\newfol\Mydeligate\MyDeligate\bin\Debug\net8.0\MyDeligate.exe
+C:\Users\91797\OneDrive\Desktop\newfol\Mydeligate\MyDeligate\bin\Debug\net8.0\MyDeligate.deps.json
+C:\Users\91797\OneDrive\Desktop\newfol\Mydeligate\MyDeligate\bin\Debug\net8.0\MyDeligate.runtimeconfig.json
+C:\Users\91797\OneDrive\Desktop\newfol\Mydeligate\MyDeligate\bin\Debug\net8.0\MyDeligate.dll
+C:\Users\91797\OneDrive\Desktop\newfol\Mydeligate\MyDeligate\bin\Debug\net8.0\MyDeligate.pdb
+C:\Users\91797\OneDrive\Desktop\newfol\Mydeligate\MyDeligate\obj\Debug\net8.0\MyDeligate.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\91797\OneDrive\Desktop\newfol\Mydeligate\MyDeligate\obj\Debug\net8.0\MyDeligate.AssemblyInfoInputs.cache
+C:\Users\91797\OneDrive\Desktop\newfol\Mydeligate\MyDeligate\obj\Debug\net8.0\MyDeligate.AssemblyInfo.cs
+C:\Users\91797\OneDrive\Desktop\newfol\Mydeligate\MyDeligate\obj\Debug\net8.0\MyDeligate.csproj.CoreCompileInputs.cache
+C:\Users\91797\OneDrive\Desktop\newfol\Mydeligate\MyDeligate\obj\Debug\net8.0\MyDeligate.dll
+C:\Users\91797\OneDrive\Desktop\newfol\Mydeligate\MyDeligate\obj\Debug\net8.0\refint\MyDeligate.dll
+C:\Users\91797\OneDrive\Desktop\newfol\Mydeligate\MyDeligate\obj\Debug\net8.0\MyDeligate.pdb
+C:\Users\91797\OneDrive\Desktop\newfol\Mydeligate\MyDeligate\obj\Debug\net8.0\MyDeligate.genruntimeconfig.cache
+C:\Users\91797\OneDrive\Desktop\newfol\Mydeligate\MyDeligate\obj\Debug\net8.0\ref\MyDeligate.dll
