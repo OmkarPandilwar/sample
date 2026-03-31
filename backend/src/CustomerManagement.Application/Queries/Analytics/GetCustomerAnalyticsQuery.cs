@@ -1,0 +1,3 @@
+namespace CustomerManagement.Application.Queries.Analytics;
+
+public record GetCustomerAnalyticsQuery;
