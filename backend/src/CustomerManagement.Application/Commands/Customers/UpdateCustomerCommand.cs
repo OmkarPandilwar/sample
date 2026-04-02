@@ -4,11 +4,15 @@ namespace CustomerManagement.Application.Commands.Customers;
 
 public record UpdateCustomerCommand(
     Guid Id,
-    string FirstName,
-    string LastName,
+    string CustomerName,
     string Email,
     string? Phone,
-    string? CompanyName,
+    string? Website,
+    string? Industry,
+    string? CompanySize,
+    CustomerClassification Classification,
+    CustomerType Type,
     CustomerSegment Segment,
-    CustomerClassification Classification
+    decimal AccountValue,
+    string? AssignedSalesRepId
 );

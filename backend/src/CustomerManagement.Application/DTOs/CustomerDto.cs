@@ -4,35 +4,50 @@ namespace CustomerManagement.Application.DTOs;
 
 public record CustomerDto(
     Guid Id,
-    string FirstName,
-    string LastName,
-    string FullName,
+    string CustomerName,
     string Email,
     string? Phone,
-    string? CompanyName,
-    CustomerSegment Segment,
+    string? Website,
+    string? Industry,
+    string? CompanySize,
     CustomerClassification Classification,
+    CustomerType Type,
+    CustomerSegment Segment,
+    decimal AccountValue,
+    string? AssignedSalesRepId,
     bool IsActive,
-    DateTime CreatedAt,
-    DateTime? UpdatedAt
+    DateTime CreatedDate,
+    DateTime? ModifiedDate
 );
 
 public record CreateCustomerRequest(
-    string FirstName,
-    string LastName,
+    string CustomerName,
     string Email,
     string? Phone,
-    string? CompanyName,
+    string? Website,
+    string? Industry,
+    string? CompanySize,
+    CustomerClassification Classification,
+    CustomerType Type,
     CustomerSegment Segment,
-    CustomerClassification Classification
+    decimal AccountValue = 0,
+    string? AssignedSalesRepId = null
 );
 
 public record UpdateCustomerRequest(
-    string FirstName,
-    string LastName,
+    string CustomerName,
     string Email,
     string? Phone,
-    string? CompanyName,
+    string? Website,
+    string? Industry,
+    string? CompanySize,
+    CustomerClassification Classification,
+    CustomerType Type,
     CustomerSegment Segment,
+    decimal AccountValue = 0,
+    string? AssignedSalesRepId = null
+);
+
+public record ChangeClassificationRequest(
     CustomerClassification Classification
 );

@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using CustomerManagement.Application.Commands.Customers;
 using CustomerManagement.Application.DTOs;
 using CustomerManagement.Application.Queries.Customers;
@@ -33,28 +34,52 @@ public class CustomersController : ControllerBase
 
     [HttpGet]
     [Authorize(Policy = "AnyRole")]
-    public async Task<IActionResult> GetAll([FromQuery] bool activeOnly = false, CancellationToken ct = default)
+    public async Task<IActionResult> GetAll(
+        [FromQuery] bool activeOnly = false,
+        [FromQuery] int pageNumber = 1,
+        [FromQuery] int pageSize = 10,
+        CancellationToken ct = default)
     {
-        var result = await _getAllHandler.HandleAsync(new GetAllCustomersQuery(activeOnly), ct);
+        var role = User.FindFirstValue(ClaimTypes.Role);
+        var assignedId = role == "SalesRep" ? User.FindFirstValue("AssignedRepId") : null;
+
+        var result = await _getAllHandler.HandleAsync(
+            new GetAllCustomersQuery(activeOnly, assignedId, pageNumber, pageSize), ct);
         return Ok(result);
     }
 
     [HttpGet("{id:guid}")]
     [Authorize(Policy = "AnyRole")]
-    public async Task<IActionResult> GetById(Guid id, CancellationToken ct = default)
+    public async Task<IActionResult> GetById(
+        Guid id,
+        CancellationToken ct = default)
     {
-        var result = await _getByIdHandler.HandleAsync(new GetCustomerByIdQuery(id), ct);
+        var role = User.FindFirstValue(ClaimTypes.Role);
+        var assignedId = role == "SalesRep" ? User.FindFirstValue("AssignedRepId") : null;
+
+        var result = await _getByIdHandler.HandleAsync(
+            new GetCustomerByIdQuery(id, assignedId), ct);
         return Ok(result);
     }
 
     [HttpPost]
     [Authorize(Policy = "ManagerOrAbove")]
-    public async Task<IActionResult> Create([FromBody] CreateCustomerRequest request, CancellationToken ct = default)
+    public async Task<IActionResult> Create(
+        [FromBody] CreateCustomerRequest request,
+        CancellationToken ct = default)
     {
         var command = new CreateCustomerCommand(
-            request.FirstName, request.LastName, request.Email,
-            request.Phone, request.CompanyName,
-            request.Segment, request.Classification);
+            request.CustomerName,
+            request.Email,
+            request.Phone,
+            request.Website,
+            request.Industry,
+            request.CompanySize,
+            request.Classification,
+            request.Type,
+            request.Segment,
+            request.AccountValue,
+            request.AssignedSalesRepId);
 
         var result = await _createHandler.HandleAsync(command, ct);
         return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
@@ -62,12 +87,24 @@ public class CustomersController : ControllerBase
 
     [HttpPut("{id:guid}")]
     [Authorize(Policy = "ManagerOrAbove")]
-    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateCustomerRequest request, CancellationToken ct = default)
+    public async Task<IActionResult> Update(
+        Guid id,
+        [FromBody] UpdateCustomerRequest request,
+        CancellationToken ct = default)
     {
         var command = new UpdateCustomerCommand(
-            id, request.FirstName, request.LastName, request.Email,
-            request.Phone, request.CompanyName,
-            request.Segment, request.Classification);
+            id,
+            request.CustomerName,
+            request.Email,
+            request.Phone,
+            request.Website,
+            request.Industry,
+            request.CompanySize,
+            request.Classification,
+            request.Type,
+            request.Segment,
+            request.AccountValue,
+            request.AssignedSalesRepId);
 
         var result = await _updateHandler.HandleAsync(command, ct);
         return Ok(result);
@@ -75,9 +112,12 @@ public class CustomersController : ControllerBase
 
     [HttpDelete("{id:guid}")]
     [Authorize(Policy = "AdminOnly")]
-    public async Task<IActionResult> Delete(Guid id, CancellationToken ct = default)
+    public async Task<IActionResult> Delete(
+        Guid id,
+        CancellationToken ct = default)
     {
-        await _deleteHandler.HandleAsync(new DeleteCustomerCommand(id), ct);
+        await _deleteHandler.HandleAsync(
+            new DeleteCustomerCommand(id), ct);
         return NoContent();
     }
 }

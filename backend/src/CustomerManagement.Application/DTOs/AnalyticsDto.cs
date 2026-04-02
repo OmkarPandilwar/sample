@@ -7,5 +7,7 @@ public record CustomerAnalyticsDto(
     Dictionary<string, int> CustomersBySegment,
     Dictionary<string, int> CustomersByClassification,
     int TotalInteractions,
+    decimal TotalAccountValue,
+    double AverageAccountValue,
     DateTime GeneratedAt
 );

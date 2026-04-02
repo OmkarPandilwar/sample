@@ -1,5 +1,6 @@
 using CustomerManagement.Domain.Exceptions;
 using System.Text.Json;
+using FluentValidation;
 
 namespace CustomerManagement.API.Middleware;
 
@@ -33,6 +34,13 @@ public class ExceptionHandlingMiddleware
             context.Response.StatusCode = StatusCodes.Status400BadRequest;
             context.Response.ContentType = "application/json";
             await context.Response.WriteAsync(JsonSerializer.Serialize(new { error = ex.Message }));
+        }
+        catch (ValidationException ex)
+        {
+            var errors = ex.Errors.Select(e => new { property = e.PropertyName, error = e.ErrorMessage });
+            context.Response.StatusCode = StatusCodes.Status400BadRequest;
+            context.Response.ContentType = "application/json";
+            await context.Response.WriteAsync(JsonSerializer.Serialize(new { errors }));
         }
         catch (Exception ex)
         {

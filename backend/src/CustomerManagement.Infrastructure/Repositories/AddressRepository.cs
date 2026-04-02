@@ -21,7 +21,15 @@ public class AddressRepository : IAddressRepository
         => await _context.Addresses
             .AsNoTracking()
             .Where(a => a.CustomerId == customerId)
+            .OrderByDescending(a => a.IsPrimary)
             .ToListAsync(ct);
+
+    public async Task<Address?> GetPrimaryAddressAsync(Guid customerId, CancellationToken ct = default)
+        => await _context.Addresses
+            .FirstOrDefaultAsync(a => a.CustomerId == customerId && a.IsPrimary, ct);
+
+    public async Task<bool> HasAnyAddressAsync(Guid customerId, CancellationToken ct = default)
+        => await _context.Addresses.AnyAsync(a => a.CustomerId == customerId, ct);
 
     public async Task AddAsync(Address address, CancellationToken ct = default)
         => await _context.Addresses.AddAsync(address, ct);

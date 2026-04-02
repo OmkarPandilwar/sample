@@ -24,6 +24,10 @@ public class ContactRepository : IContactRepository
             .OrderByDescending(c => c.IsPrimary)
             .ToListAsync(ct);
 
+    public async Task<Contact?> GetPrimaryContactAsync(Guid customerId, CancellationToken ct = default)
+        => await _context.Contacts
+            .FirstOrDefaultAsync(c => c.CustomerId == customerId && c.IsPrimary && c.IsActive, ct);
+
     public async Task<bool> HasPrimaryContactAsync(Guid customerId, CancellationToken ct = default)
         => await _context.Contacts
             .AsNoTracking()

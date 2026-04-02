@@ -20,12 +20,12 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public IActionResult Login([FromBody] LoginRequest request)
     {
-        var (success, role) = _userService.ValidateUser(request.Username, request.Password);
+        var (success, role, userId, assignedId) = _userService.ValidateUser(request.Username, request.Password);
 
         if (!success)
             return Unauthorized(new { message = "Invalid username or password." });
 
-        var (token, expiresAt) = _tokenService.GenerateToken(request.Username, role);
+        var (token, expiresAt) = _tokenService.GenerateToken(request.Username, role, userId, assignedId);
 
         return Ok(new LoginResponse(token, request.Username, role, expiresAt));
     }

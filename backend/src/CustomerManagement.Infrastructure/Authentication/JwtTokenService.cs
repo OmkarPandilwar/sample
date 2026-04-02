@@ -15,7 +15,7 @@ public class JwtTokenService
         _configuration = configuration;
     }
 
-    public (string token, DateTime expiresAt) GenerateToken(string username, string role)
+    public (string token, DateTime expiresAt) GenerateToken(string username, string role, string userId, string? assignedId)
     {
         var jwtSettings = _configuration.GetSection("JwtSettings");
         var secretKey = jwtSettings["SecretKey"]!;
@@ -26,15 +26,21 @@ public class JwtTokenService
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-        var claims = new[]
+        var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, username),
             new Claim(ClaimTypes.Role, role),
+            new Claim("UserId", userId),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim(JwtRegisteredClaimNames.Iat,
                 DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(),
                 ClaimValueTypes.Integer64)
         };
+
+        if (!string.IsNullOrEmpty(assignedId))
+        {
+            claims.Add(new Claim("AssignedRepId", assignedId));
+        }
 
         var expiresAt = DateTime.UtcNow.AddMinutes(expiryMinutes);
 

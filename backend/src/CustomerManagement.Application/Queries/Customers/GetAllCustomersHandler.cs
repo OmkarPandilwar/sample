@@ -12,17 +12,35 @@ public class GetAllCustomersHandler
         _repository = repository;
     }
 
-    public async Task<IEnumerable<CustomerDto>> HandleAsync(GetAllCustomersQuery query, CancellationToken ct = default)
+    public async Task<IEnumerable<CustomerDto>> HandleAsync(
+        GetAllCustomersQuery query,
+        CancellationToken ct = default)
     {
-        var customers = await _repository.GetAllAsync(ct);
+        var customers = await _repository.GetAllAsync(query.AssignedRepId, ct);
 
         if (query.ActiveOnly)
             customers = customers.Where(c => c.IsActive);
 
+        // Simple pagination
+        customers = customers
+            .Skip((query.PageNumber - 1) * query.PageSize)
+            .Take(query.PageSize);
+
         return customers.Select(c => new CustomerDto(
-            c.Id, c.FirstName, c.LastName, c.FullName,
-            c.Email, c.Phone, c.CompanyName,
-            c.Segment, c.Classification,
-            c.IsActive, c.CreatedAt, c.UpdatedAt));
+            c.Id,
+            c.CustomerName,
+            c.Email,
+            c.Phone,
+            c.Website,
+            c.Industry,
+            c.CompanySize,
+            c.Classification,
+            c.Type,
+            c.Segment,
+            c.AccountValue,
+            c.AssignedSalesRepId,
+            c.IsActive,
+            c.CreatedDate,
+            c.ModifiedDate));
     }
 }

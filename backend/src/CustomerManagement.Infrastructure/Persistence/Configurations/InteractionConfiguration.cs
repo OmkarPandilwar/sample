@@ -9,8 +9,12 @@ public class InteractionConfiguration : IEntityTypeConfiguration<Interaction>
     public void Configure(EntityTypeBuilder<Interaction> builder)
     {
         builder.HasKey(i => i.Id);
-        builder.Property(i => i.Notes).IsRequired().HasMaxLength(2000);
-        builder.Property(i => i.CreatedBy).IsRequired().HasMaxLength(100);
+        builder.Property(i => i.Subject)
+            .IsRequired().HasMaxLength(300);
+        builder.Property(i => i.Details)
+            .IsRequired().HasMaxLength(2000);
+        builder.Property(i => i.CreatedBy)
+            .IsRequired().HasMaxLength(100);
         builder.Property(i => i.Type).IsRequired();
 
         builder.HasIndex(i => i.CustomerId);

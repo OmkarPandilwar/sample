@@ -93,9 +93,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection(); // Disabled for local dev to avoid "Failed to fetch" issues
 app.UseCors("AllowReact");
 app.UseMiddleware<CustomerManagement.API.Middleware.ExceptionHandlingMiddleware>();
 app.UseAuthentication();

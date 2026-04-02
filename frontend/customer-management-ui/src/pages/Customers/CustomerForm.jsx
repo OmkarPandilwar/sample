@@ -9,8 +9,8 @@ export default function CustomerForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [form, setForm] = useState({
-    firstName: '', lastName: '', email: '',
-    phone: '', companyName: '', segment: 1, classification: 1,
+    customerName: '', email: '', phone: '', website: '', industry: '', companySize: '',
+    accountValue: 0, segment: 1, classification: 1, type: 1
   });
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function CustomerForm() {
   
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const numericFields = ['segment', 'classification'];
+    const numericFields = ['segment', 'classification', 'type', 'accountValue'];
     setForm(prev => ({
       ...prev,
       [name]: numericFields.includes(name) ? parseInt(value) : value
@@ -63,11 +63,13 @@ export default function CustomerForm() {
       <div style={styles.card}>
         <form onSubmit={handleSubmit}>
           <div style={styles.grid}>
-            <Field label="First Name" name="firstName" value={form.firstName} onChange={handleChange} required />
-            <Field label="Last Name" name="lastName" value={form.lastName} onChange={handleChange} required />
+            <Field label="Customer Name" name="customerName" value={form.customerName} onChange={handleChange} required />
             <Field label="Email" name="email" type="email" value={form.email} onChange={handleChange} required />
             <Field label="Phone" name="phone" value={form.phone} onChange={handleChange} />
-            <Field label="Company" name="companyName" value={form.companyName} onChange={handleChange} />
+            <Field label="Website" name="website" value={form.website} onChange={handleChange} />
+            <Field label="Industry" name="industry" value={form.industry} onChange={handleChange} />
+            <Field label="Company Size" name="companySize" value={form.companySize} onChange={handleChange} />
+            <Field label="Account Value" name="accountValue" type="number" value={form.accountValue} onChange={handleChange} />
           </div>
           <div style={styles.grid}>
             <div style={styles.field}>

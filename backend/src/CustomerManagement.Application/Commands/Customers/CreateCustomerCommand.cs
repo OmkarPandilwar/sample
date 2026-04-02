@@ -1,14 +1,17 @@
-using CustomerManagement.Application.DTOs;
 using CustomerManagement.Domain.Enums;
 
 namespace CustomerManagement.Application.Commands.Customers;
 
 public record CreateCustomerCommand(
-    string FirstName,
-    string LastName,
+    string CustomerName,
     string Email,
     string? Phone,
-    string? CompanyName,
+    string? Website,
+    string? Industry,
+    string? CompanySize,
+    CustomerClassification Classification,
+    CustomerType Type,
     CustomerSegment Segment,
-    CustomerClassification Classification
+    decimal AccountValue,
+    string? AssignedSalesRepId
 );

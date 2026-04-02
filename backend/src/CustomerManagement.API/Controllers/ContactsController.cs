@@ -1,41 +1,63 @@
 using CustomerManagement.Application.Commands.Contacts;
 using CustomerManagement.Application.DTOs;
-using CustomerManagement.Application.Queries.Contacts;
+using CustomerManagement.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CustomerManagement.API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/customers")]
 [Authorize]
 public class ContactsController : ControllerBase
 {
     private readonly AddContactHandler _addHandler;
-    private readonly GetContactsByCustomerHandler _getHandler;
+    private readonly IContactRepository _contactRepository;
 
-    public ContactsController(AddContactHandler addHandler, GetContactsByCustomerHandler getHandler)
+    public ContactsController(
+        AddContactHandler addHandler,
+        IContactRepository contactRepository)
     {
         _addHandler = addHandler;
-        _getHandler = getHandler;
+        _contactRepository = contactRepository;
     }
 
-    [HttpGet("customer/{customerId:guid}")]
-    public async Task<IActionResult> GetByCustomer(Guid customerId, CancellationToken ct = default)
+    [HttpGet("{customerId:guid}/contacts")]
+    [Authorize(Policy = "AnyRole")]
+    public async Task<IActionResult> GetByCustomer(
+        Guid customerId, CancellationToken ct = default)
     {
-        var result = await _getHandler.HandleAsync(new GetContactsByCustomerQuery(customerId), ct);
+        var contacts = await _contactRepository
+            .GetByCustomerIdAsync(customerId, ct);
+
+        var result = contacts.Select(c => new ContactDto(
+            c.Id, c.CustomerId,
+            c.FirstName, c.LastName, c.FullName,
+            c.Email, c.Phone, c.JobTitle,
+            c.IsPrimary, c.IsActive, c.CreatedAt));
+
         return Ok(result);
     }
 
-    [HttpPost]
-    [Authorize(Policy = "ManagerOrAbove")]
-    public async Task<IActionResult> Add([FromBody] CreateContactRequest request, CancellationToken ct = default)
+    [HttpPost("{customerId:guid}/contacts")]
+    [Authorize(Policy = "AnyRole")]
+    public async Task<IActionResult> Add(
+        Guid customerId,
+        [FromBody] CreateContactRequest request,
+        CancellationToken ct = default)
     {
         var command = new AddContactCommand(
-            request.CustomerId, request.FirstName, request.LastName,
-            request.Email, request.Phone, request.JobTitle, request.IsPrimary);
+            customerId,
+            request.FirstName,
+            request.LastName,
+            request.Email,
+            request.Phone,
+            request.JobTitle,
+            request.IsPrimary);
 
         var result = await _addHandler.HandleAsync(command, ct);
-        return Created($"/api/contacts/{result.Id}", result);
+        return Created(
+            $"/api/customers/{customerId}/contacts/{result.Id}",
+            result);
     }
 }

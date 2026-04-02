@@ -14,14 +14,29 @@ public class InteractionRepository : IInteractionRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Interaction>> GetByCustomerIdAsync(Guid customerId, CancellationToken ct = default)
+    public async Task<IEnumerable<Interaction>> GetByCustomerIdAsync(
+        Guid customerId, CancellationToken ct = default)
         => await _context.Interactions
             .AsNoTracking()
             .Where(i => i.CustomerId == customerId)
             .OrderByDescending(i => i.InteractionDate)
             .ToListAsync(ct);
 
-    public async Task AddAsync(Interaction interaction, CancellationToken ct = default)
+    public async Task<Interaction?> GetByIdAsync(
+        Guid id, CancellationToken ct = default)
+        => await _context.Interactions
+            .AsNoTracking()
+            .FirstOrDefaultAsync(i => i.Id == id, ct);
+
+    public async Task<int> GetInteractionCountAsync(
+        Guid customerId, DateTime since, CancellationToken ct = default)
+        => await _context.Interactions
+            .AsNoTracking()
+            .CountAsync(i => i.CustomerId == customerId
+                && i.InteractionDate >= since, ct);
+
+    public async Task AddAsync(
+        Interaction interaction, CancellationToken ct = default)
         => await _context.Interactions.AddAsync(interaction, ct);
 
     public async Task<int> SaveChangesAsync(CancellationToken ct = default)

@@ -4,18 +4,20 @@ namespace CustomerManagement.Infrastructure.Authentication;
 // For this project we use hardcoded users to keep focus on architecture.
 public class UserService
 {
-    private static readonly Dictionary<string, (string Password, string Role)> Users = new()
+    private record UserRecord(string Id, string Password, string Role, string? AssignedRepId = null);
+
+    private static readonly Dictionary<string, UserRecord> Users = new()
     {
-        { "admin",       ("Admin@123",   "Admin") },
-        { "manager",     ("Manager@123", "SalesManager") },
-        { "salesrep",    ("Sales@123",   "SalesRep") }
+        { "admin",    new UserRecord("1", "Admin@123",   "Admin") },
+        { "manager",  new UserRecord("2", "Manager@123", "SalesManager") },
+        { "salesrep", new UserRecord("3", "Sales@123",   "SalesRep", "REP_001") }
     };
 
-    public (bool success, string role) ValidateUser(string username, string password)
+    public (bool success, string role, string userId, string? assignedId) ValidateUser(string username, string password)
     {
         if (Users.TryGetValue(username.ToLower(), out var user) && user.Password == password)
-            return (true, user.Role);
+            return (true, user.Role, user.Id, user.AssignedRepId);
 
-        return (false, string.Empty);
+        return (false, string.Empty, string.Empty, null);
     }
 }

@@ -10,21 +10,26 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
     {
         builder.HasKey(c => c.Id);
 
-        builder.Property(c => c.FirstName).IsRequired().HasMaxLength(100);
-        builder.Property(c => c.LastName).IsRequired().HasMaxLength(100);
-        builder.Property(c => c.Email).IsRequired().HasMaxLength(200);
+        builder.Property(c => c.CustomerName)
+            .IsRequired().HasMaxLength(200);
+        builder.Property(c => c.Email)
+            .IsRequired().HasMaxLength(200);
         builder.Property(c => c.Phone).HasMaxLength(20);
-        builder.Property(c => c.CompanyName).HasMaxLength(200);
-        builder.Property(c => c.Segment).IsRequired();
+        builder.Property(c => c.Website).HasMaxLength(300);
+        builder.Property(c => c.Industry).HasMaxLength(100);
+        builder.Property(c => c.CompanySize).HasMaxLength(50);
         builder.Property(c => c.Classification).IsRequired();
+        builder.Property(c => c.Type).IsRequired();
+        builder.Property(c => c.Segment).IsRequired();
+        builder.Property(c => c.AccountValue)
+            .HasColumnType("decimal(18,2)");
+        builder.Property(c => c.AssignedSalesRepId).HasMaxLength(100);
 
-        // Indexes for fast query
         builder.HasIndex(c => c.Email).IsUnique();
         builder.HasIndex(c => c.Segment);
         builder.HasIndex(c => c.Classification);
         builder.HasIndex(c => c.IsActive);
 
-        // Relationships
         builder.HasMany(c => c.Contacts)
             .WithOne(c => c.Customer)
             .HasForeignKey(c => c.CustomerId)

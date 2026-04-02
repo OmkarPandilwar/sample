@@ -17,5 +17,12 @@ public class CustomerManagementDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CustomerManagementDbContext).Assembly);
+        
+        modelBuilder.Entity<Customer>(entity =>
+        {
+            entity.HasIndex(e => e.Email).IsUnique();
+            entity.HasIndex(e => e.Classification);
+            entity.HasIndex(e => e.Segment);
+        });
     }
 }

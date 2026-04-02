@@ -7,18 +7,21 @@ namespace CustomerManagement.Domain.Entities;
 public class Customer
 {
     public Guid Id { get; private set; }
-    public string FirstName { get; private set; } = string.Empty;
-    public string LastName { get; private set; } = string.Empty;
+    public string CustomerName { get; private set; } = string.Empty;
     public string Email { get; private set; } = string.Empty;
     public string? Phone { get; private set; }
-    public string? CompanyName { get; private set; }
-    public CustomerSegment Segment { get; private set; }
+    public string? Website { get; private set; }
+    public string? Industry { get; private set; }
+    public string? CompanySize { get; private set; }
     public CustomerClassification Classification { get; private set; }
+    public CustomerType Type { get; private set; }
+    public CustomerSegment Segment { get; private set; }
+    public decimal AccountValue { get; private set; }
+    public string? AssignedSalesRepId { get; private set; }
     public bool IsActive { get; private set; }
-    public DateTime CreatedAt { get; private set; }
-    public DateTime? UpdatedAt { get; private set; }
+    public DateTime CreatedDate { get; private set; }
+    public DateTime? ModifiedDate { get; private set; }
 
-    // Navigation properties
     private readonly List<Contact> _contacts = new();
     private readonly List<Address> _addresses = new();
     private readonly List<Interaction> _interactions = new();
@@ -27,64 +30,81 @@ public class Customer
     public IReadOnlyCollection<Address> Addresses => _addresses.AsReadOnly();
     public IReadOnlyCollection<Interaction> Interactions => _interactions.AsReadOnly();
 
-    // Required by EF Core
     private Customer() { }
 
     public static Customer Create(
-        string firstName,
-        string lastName,
+        string customerName,
         string email,
-        CustomerSegment segment,
         CustomerClassification classification,
+        CustomerType type,
+        CustomerSegment segment,
         string? phone = null,
-        string? companyName = null)
+        string? website = null,
+        string? industry = null,
+        string? companySize = null,
+        decimal accountValue = 0,
+        string? assignedSalesRepId = null)
     {
-        if (string.IsNullOrWhiteSpace(firstName))
-            throw new DomainException("First name is required.");
+        if (string.IsNullOrWhiteSpace(customerName))
+            throw new DomainException("Customer name is required.");
 
-        if (string.IsNullOrWhiteSpace(lastName))
-            throw new DomainException("Last name is required.");
-
-        // Validate email via value object
         var validatedEmail = new Email(email);
 
         return new Customer
         {
             Id = Guid.NewGuid(),
-            FirstName = firstName.Trim(),
-            LastName = lastName.Trim(),
+            CustomerName = customerName.Trim(),
             Email = validatedEmail.Value,
             Phone = phone,
-            CompanyName = companyName,
-            Segment = segment,
+            Website = website,
+            Industry = industry,
+            CompanySize = companySize,
             Classification = classification,
+            Type = type,
+            Segment = segment,
+            AccountValue = accountValue,
+            AssignedSalesRepId = assignedSalesRepId,
             IsActive = true,
-            CreatedAt = DateTime.UtcNow
+            CreatedDate = DateTime.UtcNow
         };
     }
 
     public void Update(
-        string firstName,
-        string lastName,
+        string customerName,
         string email,
-        CustomerSegment segment,
         CustomerClassification classification,
+        CustomerType type,
+        CustomerSegment segment,
         string? phone = null,
-        string? companyName = null)
+        string? website = null,
+        string? industry = null,
+        string? companySize = null,
+        decimal accountValue = 0,
+        string? assignedSalesRepId = null)
     {
-        if (string.IsNullOrWhiteSpace(firstName))
-            throw new DomainException("First name is required.");
+        if (string.IsNullOrWhiteSpace(customerName))
+            throw new DomainException("Customer name is required.");
 
         var validatedEmail = new Email(email);
 
-        FirstName = firstName.Trim();
-        LastName = lastName.Trim();
+        CustomerName = customerName.Trim();
         Email = validatedEmail.Value;
-        Segment = segment;
         Classification = classification;
+        Type = type;
+        Segment = segment;
         Phone = phone;
-        CompanyName = companyName;
-        UpdatedAt = DateTime.UtcNow;
+        Website = website;
+        Industry = industry;
+        CompanySize = companySize;
+        AccountValue = accountValue;
+        AssignedSalesRepId = assignedSalesRepId;
+        ModifiedDate = DateTime.UtcNow;
+    }
+
+    public void ChangeClassification(CustomerClassification classification)
+    {
+        Classification = classification;
+        ModifiedDate = DateTime.UtcNow;
     }
 
     public void Deactivate()
@@ -92,10 +112,7 @@ public class Customer
         if (_contacts.Any(c => c.IsActive) || _interactions.Any())
             throw new DomainException(
                 "Cannot deactivate customer with active contacts or interactions.");
-
         IsActive = false;
-        UpdatedAt = DateTime.UtcNow;
+        ModifiedDate = DateTime.UtcNow;
     }
-
-    public string FullName => $"{FirstName} {LastName}";
 }

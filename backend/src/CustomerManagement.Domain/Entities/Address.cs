@@ -1,3 +1,4 @@
+using CustomerManagement.Domain.Enums;
 using CustomerManagement.Domain.Exceptions;
 
 namespace CustomerManagement.Domain.Entities;
@@ -6,6 +7,7 @@ public class Address
 {
     public Guid Id { get; private set; }
     public Guid CustomerId { get; private set; }
+    public AddressType AddressType { get; private set; }
     public string Street { get; private set; } = string.Empty;
     public string City { get; private set; } = string.Empty;
     public string State { get; private set; } = string.Empty;
@@ -14,13 +16,13 @@ public class Address
     public bool IsPrimary { get; private set; }
     public DateTime CreatedAt { get; private set; }
 
-    // Navigation
     public Customer? Customer { get; private set; }
 
     private Address() { }
 
     public static Address Create(
         Guid customerId,
+        AddressType addressType,
         string street,
         string city,
         string state,
@@ -30,7 +32,6 @@ public class Address
     {
         if (string.IsNullOrWhiteSpace(street))
             throw new DomainException("Street is required.");
-
         if (string.IsNullOrWhiteSpace(city))
             throw new DomainException("City is required.");
 
@@ -38,6 +39,7 @@ public class Address
         {
             Id = Guid.NewGuid(),
             CustomerId = customerId,
+            AddressType = addressType,
             Street = street.Trim(),
             City = city.Trim(),
             State = state.Trim(),
@@ -48,8 +50,12 @@ public class Address
         };
     }
 
-    public void Update(string street, string city, string state, string postalCode, string country)
+    public void Update(
+        AddressType addressType,
+        string street, string city,
+        string state, string postalCode, string country)
     {
+        AddressType = addressType;
         Street = street.Trim();
         City = city.Trim();
         State = state.Trim();

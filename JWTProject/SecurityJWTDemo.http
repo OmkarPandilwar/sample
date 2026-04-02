@@ -1,6 +1,0 @@
-@SecurityJWTDemo_HostAddress = http://localhost:5030
-
-GET {{SecurityJWTDemo_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

@@ -13,15 +13,31 @@ public class GetCustomerByIdHandler
         _repository = repository;
     }
 
-    public async Task<CustomerDto> HandleAsync(GetCustomerByIdQuery query, CancellationToken ct = default)
+    public async Task<CustomerDto> HandleAsync(
+        GetCustomerByIdQuery query,
+        CancellationToken ct = default)
     {
         var customer = await _repository.GetByIdWithDetailsAsync(query.Id, ct)
             ?? throw new CustomerNotFoundException(query.Id);
 
+        if (!string.IsNullOrEmpty(query.AssignedRepId) && customer.AssignedSalesRepId != query.AssignedRepId)
+            throw new UnauthorizedAccessException("You do not have access to this customer.");
+
         return new CustomerDto(
-            customer.Id, customer.FirstName, customer.LastName, customer.FullName,
-            customer.Email, customer.Phone, customer.CompanyName,
-            customer.Segment, customer.Classification,
-            customer.IsActive, customer.CreatedAt, customer.UpdatedAt);
+            customer.Id,
+            customer.CustomerName,
+            customer.Email,
+            customer.Phone,
+            customer.Website,
+            customer.Industry,
+            customer.CompanySize,
+            customer.Classification,
+            customer.Type,
+            customer.Segment,
+            customer.AccountValue,
+            customer.AssignedSalesRepId,
+            customer.IsActive,
+            customer.CreatedDate,
+            customer.ModifiedDate);
     }
 }

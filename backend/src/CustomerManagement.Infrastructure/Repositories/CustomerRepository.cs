@@ -27,22 +27,41 @@ public class CustomerRepository : ICustomerRepository
             .Include(c => c.Interactions)
             .FirstOrDefaultAsync(c => c.Id == id, ct);
 
-    public async Task<IEnumerable<Customer>> GetAllAsync(CancellationToken ct = default)
-        => await _context.Customers
-            .AsNoTracking()
-            .OrderBy(c => c.LastName)
-            .ToListAsync(ct);
+    public async Task<IEnumerable<Customer>> GetAllAsync(string? assignedRepId = null, CancellationToken ct = default)
+    {
+        var query = _context.Customers.AsNoTracking();
+        
+        if (!string.IsNullOrEmpty(assignedRepId))
+            query = query.Where(c => c.AssignedSalesRepId == assignedRepId);
 
-    public async Task<IEnumerable<Customer>> GetBySegmentAsync(CustomerSegment segment, CancellationToken ct = default)
-        => await _context.Customers
-            .AsNoTracking()
-            .Where(c => c.Segment == segment)
-            .ToListAsync(ct);
+        return await query.OrderBy(c => c.CustomerName).ToListAsync(ct);
+    }
+
+    public async Task<IEnumerable<Customer>> GetBySegmentAsync(CustomerSegment segment, string? assignedRepId = null, CancellationToken ct = default)
+    {
+        var query = _context.Customers.AsNoTracking().Where(c => c.Segment == segment);
+        
+        if (!string.IsNullOrEmpty(assignedRepId))
+            query = query.Where(c => c.AssignedSalesRepId == assignedRepId);
+
+        return await query.ToListAsync(ct);
+    }
 
     public async Task<bool> EmailExistsAsync(string email, CancellationToken ct = default)
         => await _context.Customers
             .AsNoTracking()
             .AnyAsync(c => c.Email == email.ToLowerInvariant(), ct);
+
+    public async Task<bool> ExistsAsync(string email, string? companyName, CancellationToken ct = default)
+    {
+        var query = _context.Customers.AsNoTracking()
+            .Where(c => c.Email == email.ToLowerInvariant());
+        
+        if (!string.IsNullOrWhiteSpace(companyName))
+            query = query.Where(c => c.CustomerName == companyName);
+
+        return await query.AnyAsync(ct);
+    }
 
     public async Task AddAsync(Customer customer, CancellationToken ct = default)
         => await _context.Customers.AddAsync(customer, ct);

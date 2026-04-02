@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import CustomerList from './pages/Customers/CustomerList';
 import CustomerForm from './pages/Customers/CustomerForm';
+import CustomerDetail from './pages/Customers/CustomerDetail';
 import AnalyticsDashboard from './pages/Analytics/AnalyticsDashboard';
 
 function Layout({ children }) {
@@ -41,6 +42,11 @@ export default function App() {
           <Route path="/customers/:id/edit" element={
             <ProtectedRoute>
               <Layout><CustomerForm /></Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/customers/:id" element={
+            <ProtectedRoute>
+              <Layout><CustomerDetail /></Layout>
             </ProtectedRoute>
           } />
           <Route path="/analytics" element={
