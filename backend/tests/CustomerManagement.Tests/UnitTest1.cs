@@ -1,3 +1,5 @@
+using Xunit;
+
 namespace CustomerManagement.Tests;
 
 public class UnitTest1

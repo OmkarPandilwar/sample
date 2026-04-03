@@ -23,10 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Xunit" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\src\CustomerManagement.Domain\CustomerManagement.Domain.csproj" />
     <ProjectReference Include="..\..\src\CustomerManagement.Application\CustomerManagement.Application.csproj" />
     <ProjectReference Include="..\..\src\CustomerManagement.Infrastructure\CustomerManagement.Infrastructure.csproj" />
