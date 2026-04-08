@@ -1,15 +1,22 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { customerApi } from '../../api/customerApi';
 import { interactionApi } from '../../api/interactionApi';
 
+const CLASSIFICATION = { 1: 'Bronze', 2: 'Silver', 3: 'Gold', 4: 'Platinum' };
+const CLASS_BADGE = { 1: 'badge-bronze', 2: 'badge-silver', 3: 'badge-gold', 4: 'badge-platinum' };
+const SEGMENT = { 1: 'Retail', 2: 'Corporate', 3: 'Enterprise', 4: 'Partner' };
+const INT_TYPE = { 1: 'Email', 2: 'Phone Call', 3: 'Meeting', 4: 'Support Ticket' };
+
 export default function CustomerDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [customer, setCustomer] = useState(null);
   const [interactions, setInteractions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  
+  const [submitting, setSubmitting] = useState(false);
+
   const [newInteraction, setNewInteraction] = useState({
     type: 1,
     subject: '',
@@ -23,111 +30,207 @@ export default function CustomerDetail() {
         customerApi.getById(id),
         interactionApi.getByCustomer(id).catch(() => ({ data: [] }))
       ]);
+      console.log('Customer detail:', custRes.data);
       setCustomer(custRes.data);
       setInteractions(intRes.data);
-    } catch (err) {
+    } catch {
       setError('Could not load customer details.');
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    fetchData();
-    // eslint-disable-next-line
-  }, [id]);
+  useEffect(() => { fetchData(); }, [id]);
 
   const handleAddInteraction = async (e) => {
     e.preventDefault();
-    if (!newInteraction.subject || !newInteraction.details) return;
+    setSubmitting(true);
     try {
       await interactionApi.create(id, {
         ...newInteraction,
         type: parseInt(newInteraction.type)
       });
       setNewInteraction(prev => ({ ...prev, subject: '', details: '' }));
-      fetchData(); // refresh list
-    } catch (err) {
+      fetchData();
+    } catch {
       alert('Failed to add interaction');
+    } finally {
+      setSubmitting(false);
     }
   };
 
-  if (loading) return <div className="content-area">Loading...</div>;
-  if (error) return <div className="content-area" style={{ color: 'red' }}>{error}</div>;
-  if (!customer) return <div className="content-area">Customer not found</div>;
+  if (loading) return (
+    <div className="page-wrap d-flex justify-content-center align-items-center py-5">
+      <div className="spinner-border text-primary me-2" role="status" />
+      <span className="text-muted">Loading customer...</span>
+    </div>
+  );
+
+  if (error) return (
+    <div className="page-wrap">
+      <div className="alert alert-danger">{error}</div>
+    </div>
+  );
+
+  if (!customer) return (
+    <div className="page-wrap">
+      <div className="alert alert-warning">Customer not found.</div>
+    </div>
+  );
 
   return (
-    <div className="content-area">
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2rem' }}>
-        <h2>{customer.customerName}</h2>
-        <Link to="/customers" className="btn-primary" style={{ textDecoration: 'none' }}>Back to Customers</Link>
+    <div className="page-wrap">
+      {/* Header */}
+      <div className="detail-header d-flex justify-content-between align-items-start flex-wrap gap-3">
+        <div>
+          <h2>{customer.customerName}</h2>
+          <p>{customer.email} {customer.phone && `· ${customer.phone}`}</p>
+        </div>
+        <div className="d-flex gap-2">
+          <Link to={`/customers/${id}/edit`} className="btn btn-warning btn-sm fw-semibold">✏️ Edit</Link>
+          <button onClick={() => navigate('/customers')} className="btn btn-outline-light btn-sm">← Back</button>
+        </div>
       </div>
 
-      <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2rem' }}>
-        <h3>Details</h3>
-        <p><strong>Email:</strong> {customer.email}</p>
-        <p><strong>Phone:</strong> {customer.phone || 'N/A'}</p>
-        <p><strong>Website:</strong> {customer.website || 'N/A'}</p>
-        <p><strong>Status:</strong> <span className={`badge ${customer.isActive ? 'badge-active' : 'badge-inactive'}`}>{customer.isActive ? 'Active' : 'Inactive'}</span></p>
-      </div>
+      <div className="row g-3">
+        {/* Left: Details */}
+        <div className="col-12 col-lg-5">
+          <div className="info-panel">
+            <h5 className="fw-bold mb-3" style={{ color: '#475569', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Customer Details</h5>
+            <div className="info-row">
+              <span className="info-label">Name</span>
+              <span className="fw-semibold">{customer.customerName}</span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Email</span>
+              <span style={{ color: '#4f46e5' }}>{customer.email}</span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Phone</span>
+              <span>{customer.phone || '—'}</span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Website</span>
+              <span>{customer.website
+                ? <a href={customer.website} target="_blank" rel="noreferrer">{customer.website}</a>
+                : '—'}</span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Industry</span>
+              <span>{customer.industry || '—'}</span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Company Size</span>
+              <span>{customer.companySize || '—'}</span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Classification</span>
+              <span className={`badge ${CLASS_BADGE[customer.classification] || 'bg-secondary'}`}>
+                {CLASSIFICATION[customer.classification] || customer.classification}
+              </span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Segment</span>
+              <span className="badge bg-info text-dark">{SEGMENT[customer.segment] || customer.segment}</span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Account Value</span>
+              <span className="fw-bold text-success">
+                {customer.accountValue != null ? `$${Number(customer.accountValue).toLocaleString()}` : '—'}
+              </span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Status</span>
+              <span className={`badge ${customer.isActive ? 'badge-active' : 'badge-inactive'}`}>
+                {customer.isActive ? 'Active' : 'Inactive'}
+              </span>
+            </div>
+            <div className="info-row">
+              <span className="info-label">Created</span>
+              <span>{new Date(customer.createdDate).toLocaleDateString()}</span>
+            </div>
+          </div>
+        </div>
 
-      <div className="glass-panel" style={{ padding: '2rem' }}>
-        <h3>Interactions</h3>
-        {interactions.length === 0 ? (
-          <p style={{ color: 'var(--text-muted)' }}>No interactions logged yet.</p>
-        ) : (
-          <div style={{ marginBottom: '2rem' }}>
-            {interactions.map(int => (
-              <div key={int.id} style={{ borderBottom: '1px solid var(--border)', padding: '1rem 0' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <strong>{int.subject}</strong>
-                  <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{new Date(int.interactionDate).toLocaleDateString()}</span>
+        {/* Right: Interactions */}
+        <div className="col-12 col-lg-7">
+          <div className="info-panel">
+            <h5 className="fw-bold mb-3" style={{ color: '#475569', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+              Interactions ({interactions.length})
+            </h5>
+
+            {interactions.length === 0 ? (
+              <p className="text-muted fst-italic">No interactions yet.</p>
+            ) : interactions.map(int => (
+              <div key={int.id} className="interaction-item">
+                <div className="d-flex justify-content-between">
+                  <span className="int-subject">{int.subject}</span>
+                  <small className="text-muted">{new Date(int.interactionDate).toLocaleDateString()}</small>
                 </div>
-                <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>{int.details}</p>
-                <small style={{ color: 'var(--primary)' }}>Type: {['Unknown', 'Email', 'Call', 'Meeting', 'SupportTicket'][int.type] || int.type} • By: {int.createdBy}</small>
+                <p className="int-meta mb-1">{int.details}</p>
+                <small className="text-primary fw-semibold">
+                  {INT_TYPE[int.type] || int.type} · {int.createdBy}
+                </small>
               </div>
             ))}
-          </div>
-        )}
 
-        <div style={{ marginTop: '2rem', background: 'rgba(0,0,0,0.2)', padding: '1.5rem', borderRadius: '8px' }}>
-          <h4>Log New Interaction</h4>
-          <form onSubmit={handleAddInteraction} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
-            <div style={{ display: 'flex', gap: '1rem' }}>
-              <select 
-                value={newInteraction.type} 
-                onChange={(e) => setNewInteraction(v => ({...v, type: e.target.value}))}
-                style={{ flex: 1 }}
-              >
-                <option value={1}>Email</option>
-                <option value={2}>Phone Call</option>
-                <option value={3}>Meeting</option>
-                <option value={4}>Support Ticket</option>
-              </select>
-              <input 
-                type="date" 
-                value={newInteraction.interactionDate} 
-                onChange={(e) => setNewInteraction(v => ({...v, interactionDate: e.target.value}))}
-                style={{ flex: 1 }}
-                required 
-              />
+            {/* Log Interaction Form */}
+            <div className="mt-4 pt-3 border-top">
+              <h6 className="fw-bold mb-3">📝 Log New Interaction</h6>
+              <form onSubmit={handleAddInteraction}>
+                <div className="row g-2 mb-2">
+                  <div className="col-6">
+                    <select
+                      className="form-select form-select-sm"
+                      value={newInteraction.type}
+                      onChange={e => setNewInteraction(v => ({ ...v, type: e.target.value }))}
+                    >
+                      <option value={1}>Email</option>
+                      <option value={2}>Phone Call</option>
+                      <option value={3}>Meeting</option>
+                      <option value={4}>Support Ticket</option>
+                    </select>
+                  </div>
+                  <div className="col-6">
+                    <input
+                      type="date"
+                      className="form-control form-control-sm"
+                      value={newInteraction.interactionDate}
+                      onChange={e => setNewInteraction(v => ({ ...v, interactionDate: e.target.value }))}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="mb-2">
+                  <input
+                    className="form-control form-control-sm"
+                    placeholder="Subject"
+                    value={newInteraction.subject}
+                    onChange={e => setNewInteraction(v => ({ ...v, subject: e.target.value }))}
+                    required
+                  />
+                </div>
+                <div className="mb-2">
+                  <textarea
+                    className="form-control form-control-sm"
+                    placeholder="Details..."
+                    value={newInteraction.details}
+                    onChange={e => setNewInteraction(v => ({ ...v, details: e.target.value }))}
+                    rows={3}
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-sm"
+                  disabled={submitting}
+                  style={{ background: 'linear-gradient(135deg,#4f46e5,#4338ca)', border: 'none', borderRadius: '8px' }}
+                >
+                  {submitting ? <><span className="spinner-border spinner-border-sm me-1" />Saving...</> : '+ Log Interaction'}
+                </button>
+              </form>
             </div>
-            <input 
-              type="text" 
-              placeholder="Subject" 
-              value={newInteraction.subject}
-              onChange={(e) => setNewInteraction(v => ({...v, subject: e.target.value}))}
-              required 
-            />
-            <textarea 
-              placeholder="Details..." 
-              value={newInteraction.details}
-              onChange={(e) => setNewInteraction(v => ({...v, details: e.target.value}))}
-              rows={3} 
-              required 
-            />
-            <button type="submit" className="btn-primary" style={{ alignSelf: 'flex-start' }}>Log Interaction</button>
-          </form>
+          </div>
         </div>
       </div>
     </div>

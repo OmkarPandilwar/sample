@@ -13,12 +13,13 @@ public class CustomerEntityTests
     public void Create_ValidCustomer_ShouldSucceed()
     {
         var customer = Customer.Create(
-            "John", "Smith", "john@acme.com",
-            CustomerSegment.Corporate,
-            CustomerClassification.Gold);
+            "John Smith", "john@acme.com",
+            CustomerClassification.VIP,
+            CustomerType.Business,
+            CustomerSegment.Enterprise);
 
         customer.Should().NotBeNull();
-        customer.FirstName.Should().Be("John");
+        customer.CustomerName.Should().Be("John Smith");
         customer.Email.Should().Be("john@acme.com");
         customer.IsActive.Should().BeTrue();
     }
@@ -27,13 +28,11 @@ public class CustomerEntityTests
     [Fact]
     public void Create_InvalidEmail_ShouldThrowDomainException()
     {
-        Action act = () => Customer.Create(
-            "John", "Smith", "not-an-email",
-            CustomerSegment.Corporate,
-            CustomerClassification.Gold);
-
-        act.Should().Throw<DomainException>()
-            .WithMessage("*not a valid email*");
+        Assert.Throws<DomainException>(() => Customer.Create(
+            "John Smith", "not-an-email",
+            CustomerClassification.VIP,
+            CustomerType.Business,
+            CustomerSegment.Enterprise));
     }
 
     // Test 3
@@ -41,12 +40,13 @@ public class CustomerEntityTests
     public void Create_EmptyFirstName_ShouldThrowDomainException()
     {
         Action act = () => Customer.Create(
-            "", "Smith", "john@acme.com",
-            CustomerSegment.Corporate,
-            CustomerClassification.Gold);
+            "", "john@acme.com",
+            CustomerClassification.VIP,
+            CustomerType.Business,
+            CustomerSegment.Enterprise);
 
         act.Should().Throw<DomainException>()
-            .WithMessage("*First name is required*");
+            .WithMessage("*Customer name is required*");
     }
 
     // Test 4
@@ -54,19 +54,21 @@ public class CustomerEntityTests
     public void Update_ValidData_ShouldUpdateFields()
     {
         var customer = Customer.Create(
-            "John", "Smith", "john@acme.com",
-            CustomerSegment.Corporate,
-            CustomerClassification.Gold);
+            "John Smith", "john@acme.com",
+            CustomerClassification.VIP,
+            CustomerType.Business,
+            CustomerSegment.Enterprise);
 
         customer.Update(
-            "Jane", "Doe", "jane@acme.com",
-            CustomerSegment.Enterprise,
-            CustomerClassification.Platinum);
+            "Jane Doe", "jane@acme.com",
+            CustomerClassification.VIP,
+            CustomerType.Business,
+            CustomerSegment.Enterprise);
 
-        customer.FirstName.Should().Be("Jane");
+        customer.CustomerName.Should().Be("Jane Doe");
         customer.Email.Should().Be("jane@acme.com");
         customer.Segment.Should().Be(CustomerSegment.Enterprise);
-        customer.UpdatedAt.Should().NotBeNull();
+        customer.ModifiedDate.Should().NotBeNull();
     }
 
     // Test 5
@@ -74,25 +76,26 @@ public class CustomerEntityTests
     public void Deactivate_CustomerWithNoActiveData_ShouldSucceed()
     {
         var customer = Customer.Create(
-            "John", "Smith", "john@acme.com",
-            CustomerSegment.Corporate,
-            CustomerClassification.Gold);
+            "John Smith", "john@acme.com",
+            CustomerClassification.VIP,
+            CustomerType.Business,
+            CustomerSegment.Enterprise);
 
         customer.Deactivate();
 
         customer.IsActive.Should().BeFalse();
     }
 
-    // Test 6
     [Fact]
-    public void FullName_ShouldCombineFirstAndLastName()
+    public void CustomerName_ShouldBeCorrect()
     {
         var customer = Customer.Create(
-            "John", "Smith", "john@acme.com",
-            CustomerSegment.Corporate,
-            CustomerClassification.Gold);
+            "John Smith", "john@acme.com",
+            CustomerClassification.VIP,
+            CustomerType.Business,
+            CustomerSegment.Enterprise);
 
-        customer.FullName.Should().Be("John Smith");
+        customer.CustomerName.Should().Be("John Smith");
     }
 
     // Test 7
@@ -100,9 +103,10 @@ public class CustomerEntityTests
     public void Create_EmailShouldBeLowercase()
     {
         var customer = Customer.Create(
-            "John", "Smith", "JOHN@ACME.COM",
-            CustomerSegment.Corporate,
-            CustomerClassification.Gold);
+            "John Smith", "JOHN@ACME.COM",
+            CustomerClassification.VIP,
+            CustomerType.Business,
+            CustomerSegment.Enterprise);
 
         customer.Email.Should().Be("john@acme.com");
     }

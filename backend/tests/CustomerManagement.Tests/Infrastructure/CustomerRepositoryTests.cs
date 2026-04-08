@@ -1,4 +1,5 @@
 using CustomerManagement.Domain.Enums;
+using CustomerManagement.Domain.Entities;
 using CustomerManagement.Infrastructure.Persistence;
 using CustomerManagement.Infrastructure.Repositories;
 using FluentAssertions;
@@ -59,7 +60,7 @@ public class CustomerRepositoryTests
     {
         // Arrange
         var customer1 = CreateCustomer("C1", "e1@test.com", "REP1", CustomerSegment.Enterprise);
-        var customer2 = CreateCustomer("C2", "e2@test.com", "REP1", CustomerSegment.SmallBusiness);
+        var customer2 = CreateCustomer("C2", "e2@test.com", "REP1", CustomerSegment.SMB);
         _context.Customers.AddRange(customer1, customer2);
         await _context.SaveChangesAsync();
 
@@ -111,6 +112,6 @@ public class CustomerRepositoryTests
         result.Should().BeTrue();
     }
 
-    private static Domain.Entities.Customer CreateCustomer(string name, string email, string repId, CustomerSegment segment = CustomerSegment.Enterprise)
-        => Domain.Entities.Customer.Create(name, email, CustomerClassification.Active, CustomerType.Corporate, segment, "1", "s", "i", "s", 0, repId);
+    private static Customer CreateCustomer(string name, string email, string repId, CustomerSegment segment = CustomerSegment.Enterprise)
+        => Customer.Create(name, email, CustomerClassification.Active, CustomerType.Business, segment, "123456", "www.test.com", "Tech", "Small", 0, repId);
 }

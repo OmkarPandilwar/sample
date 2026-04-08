@@ -2,34 +2,59 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { customerApi } from '../../api/customerApi';
 
+const SEGMENTS = [
+  { value: 1, label: 'Retail' },
+  { value: 2, label: 'Corporate' },
+  { value: 3, label: 'Enterprise' },
+  { value: 4, label: 'Partner' },
+];
+const CLASSIFICATIONS = [
+  { value: 1, label: 'Bronze' },
+  { value: 2, label: 'Silver' },
+  { value: 3, label: 'Gold' },
+  { value: 4, label: 'Platinum' },
+];
+const TYPES = [
+  { value: 1, label: 'Direct' },
+  { value: 2, label: 'Reseller' },
+  { value: 3, label: 'Partner' },
+];
+
 export default function CustomerForm() {
   const { id } = useParams();
   const isEdit = Boolean(id);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(isEdit);
   const [error, setError] = useState('');
   const [form, setForm] = useState({
-    customerName: '', email: '', phone: '', website: '', industry: '', companySize: '',
-    accountValue: 0, segment: 1, classification: 1, type: 1
+    customerName: '', email: '', phone: '', website: '',
+    industry: '', companySize: '', accountValue: 0,
+    segment: 1, classification: 1, type: 1
   });
 
   useEffect(() => {
     if (isEdit) {
-      customerApi.getById(id).then(res => setForm(res.data)).catch(console.error);
+      customerApi.getById(id)
+        .then(res => {
+          console.log('Edit load:', res.data);
+          setForm(res.data);
+        })
+        .catch(console.error)
+        .finally(() => setFetching(false));
     }
   }, [id]);
 
-  
   const handleChange = (e) => {
     const { name, value } = e.target;
     const numericFields = ['segment', 'classification', 'type', 'accountValue'];
     setForm(prev => ({
       ...prev,
-      [name]: numericFields.includes(name) ? parseInt(value) : value
+      [name]: numericFields.includes(name) ? parseFloat(value) : value
     }));
   };
 
-    const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -38,6 +63,8 @@ export default function CustomerForm() {
         ...form,
         segment: parseInt(form.segment),
         classification: parseInt(form.classification),
+        type: parseInt(form.type),
+        accountValue: parseFloat(form.accountValue) || 0,
       };
       if (isEdit) {
         await customerApi.update(id, payload);
@@ -56,45 +83,169 @@ export default function CustomerForm() {
     }
   };
 
+  if (fetching) {
+    return (
+      <div className="page-wrap d-flex justify-content-center align-items-center py-5">
+        <div className="spinner-border text-primary" role="status" />
+      </div>
+    );
+  }
+
   return (
-    <div style={styles.page}>
-      <h1 style={styles.title}>{isEdit ? 'Edit Customer' : 'New Customer'}</h1>
-      {error && <div style={styles.error}>{error}</div>}
-      <div style={styles.card}>
+    <div className="page-wrap">
+      <div className="d-flex align-items-center gap-3 mb-4">
+        <button className="btn btn-sm btn-outline-secondary" onClick={() => navigate('/customers')}>
+          ← Back
+        </button>
+        <h1 className="section-title mb-0">{isEdit ? '✏️ Edit Customer' : '➕ New Customer'}</h1>
+      </div>
+
+      {error && (
+        <div className="alert alert-danger mb-3">{error}</div>
+      )}
+
+      <div className="form-card">
         <form onSubmit={handleSubmit}>
-          <div style={styles.grid}>
-            <Field label="Customer Name" name="customerName" value={form.customerName} onChange={handleChange} required />
-            <Field label="Email" name="email" type="email" value={form.email} onChange={handleChange} required />
-            <Field label="Phone" name="phone" value={form.phone} onChange={handleChange} />
-            <Field label="Website" name="website" value={form.website} onChange={handleChange} />
-            <Field label="Industry" name="industry" value={form.industry} onChange={handleChange} />
-            <Field label="Company Size" name="companySize" value={form.companySize} onChange={handleChange} />
-            <Field label="Account Value" name="accountValue" type="number" value={form.accountValue} onChange={handleChange} />
-          </div>
-          <div style={styles.grid}>
-            <div style={styles.field}>
-              <label style={styles.label}>Segment</label>
-              <select name="segment" value={form.segment} onChange={handleChange} style={styles.input}>
-                <option value={1}>Retail</option>
-                <option value={2}>Corporate</option>
-                <option value={3}>Enterprise</option>
-                <option value={4}>Partner</option>
+          <div className="row g-3">
+            {/* Customer Name */}
+            <div className="col-12 col-md-6">
+              <label className="form-label">Customer Name <span className="text-danger">*</span></label>
+              <input
+                className="form-control"
+                name="customerName"
+                value={form.customerName || ''}
+                onChange={handleChange}
+                placeholder="e.g. Acme Corporation"
+                required
+              />
+            </div>
+
+            {/* Email */}
+            <div className="col-12 col-md-6">
+              <label className="form-label">Email <span className="text-danger">*</span></label>
+              <input
+                className="form-control"
+                type="email"
+                name="email"
+                value={form.email || ''}
+                onChange={handleChange}
+                placeholder="e.g. contact@acme.com"
+                required
+              />
+            </div>
+
+            {/* Phone */}
+            <div className="col-12 col-md-6">
+              <label className="form-label">Phone</label>
+              <input
+                className="form-control"
+                name="phone"
+                value={form.phone || ''}
+                onChange={handleChange}
+                placeholder="e.g. +1 555 000 1234"
+              />
+            </div>
+
+            {/* Website */}
+            <div className="col-12 col-md-6">
+              <label className="form-label">Website</label>
+              <input
+                className="form-control"
+                name="website"
+                value={form.website || ''}
+                onChange={handleChange}
+                placeholder="e.g. https://acme.com"
+              />
+            </div>
+
+            {/* Industry */}
+            <div className="col-12 col-md-6">
+              <label className="form-label">Industry</label>
+              <input
+                className="form-control"
+                name="industry"
+                value={form.industry || ''}
+                onChange={handleChange}
+                placeholder="e.g. Technology"
+              />
+            </div>
+
+            {/* Company Size */}
+            <div className="col-12 col-md-6">
+              <label className="form-label">Company Size</label>
+              <input
+                className="form-control"
+                name="companySize"
+                value={form.companySize || ''}
+                onChange={handleChange}
+                placeholder="e.g. 50-200"
+              />
+            </div>
+
+            {/* Account Value */}
+            <div className="col-12 col-md-4">
+              <label className="form-label">Account Value ($)</label>
+              <input
+                className="form-control"
+                type="number"
+                name="accountValue"
+                value={form.accountValue ?? 0}
+                onChange={handleChange}
+                min={0}
+                step="0.01"
+              />
+            </div>
+
+            {/* Classification */}
+            <div className="col-12 col-md-4">
+              <label className="form-label">Classification</label>
+              <select className="form-select" name="classification" value={form.classification} onChange={handleChange}>
+                {CLASSIFICATIONS.map(c => (
+                  <option key={c.value} value={c.value}>{c.label}</option>
+                ))}
               </select>
             </div>
-            <div style={styles.field}>
-              <label style={styles.label}>Classification</label>
-              <select name="classification" value={form.classification} onChange={handleChange} style={styles.input}>
-                <option value={1}>Bronze</option>
-                <option value={2}>Silver</option>
-                <option value={3}>Gold</option>
-                <option value={4}>Platinum</option>
+
+            {/* Segment */}
+            <div className="col-12 col-md-4">
+              <label className="form-label">Segment</label>
+              <select className="form-select" name="segment" value={form.segment} onChange={handleChange}>
+                {SEGMENTS.map(s => (
+                  <option key={s.value} value={s.value}>{s.label}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* Type */}
+            <div className="col-12 col-md-4">
+              <label className="form-label">Type</label>
+              <select className="form-select" name="type" value={form.type} onChange={handleChange}>
+                {TYPES.map(t => (
+                  <option key={t.value} value={t.value}>{t.label}</option>
+                ))}
               </select>
             </div>
           </div>
-          <div style={styles.actions}>
-            <button type="button" onClick={() => navigate('/customers')} style={styles.cancelBtn}>Cancel</button>
-            <button type="submit" style={styles.saveBtn} disabled={loading}>
-              {loading ? 'Saving...' : 'Save Customer'}
+
+          {/* Actions */}
+          <div className="d-flex gap-2 mt-4 pt-3 border-top">
+            <button
+              type="submit"
+              className="btn btn-primary px-4"
+              disabled={loading}
+              style={{ background: 'linear-gradient(135deg,#4f46e5,#4338ca)', border: 'none', borderRadius: '8px' }}
+            >
+              {loading
+                ? <><span className="spinner-border spinner-border-sm me-2" />Saving...</>
+                : isEdit ? '💾 Save Changes' : '✅ Create Customer'}
+            </button>
+            <button
+              type="button"
+              className="btn btn-outline-secondary px-4"
+              onClick={() => navigate('/customers')}
+              style={{ borderRadius: '8px' }}
+            >
+              Cancel
             </button>
           </div>
         </form>
@@ -102,28 +253,3 @@ export default function CustomerForm() {
     </div>
   );
 }
-
-function Field({ label, name, value, onChange, type = 'text', required }) {
-  return (
-    <div style={{ marginBottom: '16px' }}>
-      <label style={{ display:'block', fontSize:'13px', color:'#374151', marginBottom:'6px' }}>{label}</label>
-      <input type={type} name={name} value={value || ''} onChange={onChange} required={required}
-        style={{ width:'100%', padding:'10px 12px', border:'1px solid #d1d5db',
-          borderRadius:'6px', fontSize:'14px', boxSizing:'border-box' }} />
-    </div>
-  );
-}
-
-const styles = {
-  page: { padding:'32px' },
-  title: { fontSize:'24px', color:'#1e293b', marginBottom:'24px' },
-  error: { background:'#fef2f2', color:'#dc2626', padding:'12px', borderRadius:'8px', marginBottom:'16px' },
-  card: { background:'white', padding:'32px', borderRadius:'12px', boxShadow:'0 2px 8px rgba(0,0,0,0.06)', maxWidth:'700px' },
-  grid: { display:'grid', gridTemplateColumns:'1fr 1fr', gap:'16px' },
-  field: { marginBottom:'16px' },
-  label: { display:'block', fontSize:'13px', color:'#374151', marginBottom:'6px' },
-  input: { width:'100%', padding:'10px 12px', border:'1px solid #d1d5db', borderRadius:'6px', fontSize:'14px', boxSizing:'border-box' },
-  actions: { display:'flex', gap:'12px', marginTop:'24px' },
-  cancelBtn: { padding:'10px 20px', background:'#f1f5f9', color:'#374151', border:'none', borderRadius:'8px', cursor:'pointer' },
-  saveBtn: { padding:'10px 24px', background:'#2563eb', color:'white', border:'none', borderRadius:'8px', cursor:'pointer' },
-};

@@ -63,11 +63,18 @@ public class CustomersController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Policy = "ManagerOrAbove")]
+    [Authorize(Policy = "AnyRole")]
     public async Task<IActionResult> Create(
         [FromBody] CreateCustomerRequest request,
         CancellationToken ct = default)
     {
+        var role = User.FindFirstValue(ClaimTypes.Role);
+        var assignedId = request.AssignedSalesRepId;
+        if (role == "SalesRep")
+        {
+            assignedId = User.FindFirstValue("AssignedRepId") ?? assignedId;
+        }
+
         var command = new CreateCustomerCommand(
             request.CustomerName,
             request.Email,
@@ -79,19 +86,26 @@ public class CustomersController : ControllerBase
             request.Type,
             request.Segment,
             request.AccountValue,
-            request.AssignedSalesRepId);
+            assignedId);
 
         var result = await _createHandler.HandleAsync(command, ct);
         return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
     }
 
     [HttpPut("{id:guid}")]
-    [Authorize(Policy = "ManagerOrAbove")]
+    [Authorize(Policy = "AnyRole")]
     public async Task<IActionResult> Update(
         Guid id,
         [FromBody] UpdateCustomerRequest request,
         CancellationToken ct = default)
     {
+        var role = User.FindFirstValue(ClaimTypes.Role);
+        var assignedId = request.AssignedSalesRepId;
+        if (role == "SalesRep")
+        {
+            assignedId = User.FindFirstValue("AssignedRepId") ?? assignedId;
+        }
+
         var command = new UpdateCustomerCommand(
             id,
             request.CustomerName,
@@ -104,7 +118,7 @@ public class CustomersController : ControllerBase
             request.Type,
             request.Segment,
             request.AccountValue,
-            request.AssignedSalesRepId);
+            assignedId);
 
         var result = await _updateHandler.HandleAsync(command, ct);
         return Ok(result);

@@ -4,6 +4,7 @@ using CustomerManagement.API.Controllers;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -28,14 +29,15 @@ public class AuthControllerTests
 
         _userService = new UserService();
         var tokenService = new JwtTokenService(config);
-        _controller = new AuthController(tokenService, _userService);
+        var loggerMock = new Mock<ILogger<AuthController>>();
+        _controller = new AuthController(tokenService, _userService, loggerMock.Object);
     }
 
     // Test 39
     [Fact]
     public void Login_ValidAdminCredentials_ShouldReturn200WithToken()
     {
-        var request = new LoginRequest("admin", "Admin@123");
+        var request = new LoginRequest("admin", "admin");
 
         var result = _controller.Login(request);
 

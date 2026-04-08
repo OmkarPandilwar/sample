@@ -1,0 +1,303 @@
+﻿
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(44,25): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(44,42): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(45,17): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(45,23): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(45,29): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(45,35): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(46,39): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(47,34): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(48,39): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(49,14): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(49,20): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(65,25): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(65,46): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(66,17): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(66,23): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(66,29): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(66,35): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(67,39): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(68,34): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(69,39): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(70,14): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(70,20): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(89,23): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(89,40): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(90,17): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(90,23): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(90,29): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(90,35): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(91,39): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Co
+mmands\CreateCustomerHand
+lerTests.cs(92,34): 
+error CS1513: } expected 
+[C:\CustomerManagement\ba
+ckend\tests\CustomerManag
+ement.Tests\CustomerManag
+ement.Tests.csproj]
+
+

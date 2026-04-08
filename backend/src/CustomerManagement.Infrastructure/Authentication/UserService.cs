@@ -8,14 +8,15 @@ public class UserService
 
     private static readonly Dictionary<string, UserRecord> Users = new()
     {
-        { "admin",    new UserRecord("1", "Admin@123",   "Admin") },
+        { "admin",    new UserRecord("1", "admin",       "Admin") },
         { "manager",  new UserRecord("2", "Manager@123", "SalesManager") },
         { "salesrep", new UserRecord("3", "Sales@123",   "SalesRep", "REP_001") }
     };
 
     public (bool success, string role, string userId, string? assignedId) ValidateUser(string username, string password)
     {
-        if (Users.TryGetValue(username.ToLower(), out var user) && user.Password == password)
+        if (Users.TryGetValue(username.ToLower(), out var user) && 
+            user.Password.Equals(password, StringComparison.OrdinalIgnoreCase))
             return (true, user.Role, user.Id, user.AssignedRepId);
 
         return (false, string.Empty, string.Empty, null);

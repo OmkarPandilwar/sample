@@ -25,13 +25,13 @@ public class GetAllCustomersHandlerTests
     {
         var customers = new List<Customer>
         {
-            Customer.Create("John", "Smith", "john@acme.com",
-                CustomerSegment.Corporate, CustomerClassification.Gold),
-            Customer.Create("Jane", "Doe", "jane@techcorp.com",
-                CustomerSegment.Enterprise, CustomerClassification.Platinum)
+            Customer.Create("John Smith", "john@acme.com",
+                CustomerClassification.VIP, CustomerType.Business, CustomerSegment.Enterprise),
+            Customer.Create("Jane Doe", "jane@techcorp.com",
+                CustomerClassification.VIP, CustomerType.Business, CustomerSegment.Enterprise)
         };
 
-        _repoMock.Setup(r => r.GetAllAsync(default))
+        _repoMock.Setup(r => r.GetAllAsync(It.IsAny<string?>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(customers);
 
         var result = await _handler.HandleAsync(new GetAllCustomersQuery());
@@ -44,15 +44,15 @@ public class GetAllCustomersHandlerTests
     public async Task Handle_ActiveOnlyFilter_ReturnsOnlyActiveCustomers()
     {
         var activeCustomer = Customer.Create(
-            "John", "Smith", "john@acme.com",
-            CustomerSegment.Corporate, CustomerClassification.Gold);
+            "John Smith", "john@acme.com",
+            CustomerClassification.VIP, CustomerType.Business, CustomerSegment.Enterprise);
 
         var inactiveCustomer = Customer.Create(
-            "Jane", "Doe", "jane@acme.com",
-            CustomerSegment.Enterprise, CustomerClassification.Bronze);
+            "Jane Doe", "jane@acme.com",
+            CustomerClassification.VIP, CustomerType.Business, CustomerSegment.Enterprise);
         inactiveCustomer.Deactivate();
 
-        _repoMock.Setup(r => r.GetAllAsync(default))
+        _repoMock.Setup(r => r.GetAllAsync(It.IsAny<string?>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(new List<Customer> { activeCustomer, inactiveCustomer });
 
         var result = await _handler.HandleAsync(new GetAllCustomersQuery(ActiveOnly: true));
@@ -65,7 +65,7 @@ public class GetAllCustomersHandlerTests
     [Fact]
     public async Task Handle_EmptyDatabase_ReturnsEmptyList()
     {
-        _repoMock.Setup(r => r.GetAllAsync(default))
+        _repoMock.Setup(r => r.GetAllAsync(It.IsAny<string?>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(new List<Customer>());
 
         var result = await _handler.HandleAsync(new GetAllCustomersQuery());

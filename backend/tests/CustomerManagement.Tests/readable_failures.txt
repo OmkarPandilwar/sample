@@ -1,0 +1,189 @@
+﻿
+>   Failed CustomerManage
+ment.Tests.Application.Co
+mmands.DeleteCustomerHand
+lerTests.Handle_ExistingC
+ustomer_ShouldDeactivate 
+[4 ms]
+    Error Message:
+     CustomerManagement.D
+omain.Exceptions.DomainEx
+ception : VIP customers 
+cannot be deleted.
+    Stack Trace:
+       at CustomerManagem
+ent.Application.Commands.
+Customers.DeleteCustomerH
+andler.HandleAsync(Delete
+CustomerCommand command, 
+CancellationToken ct) in 
+C:\CustomerManagement\bac
+kend\src\CustomerManageme
+nt.Application\Commands\C
+ustomers\DeleteCustomerHa
+ndler.cs:line 27
+     at CustomerManagemen
+t.Tests.Application.Comma
+nds.DeleteCustomerHandler
+Tests.Handle_ExistingCust
+omer_ShouldDeactivate() 
+in C:\CustomerManagement\
+backend\tests\CustomerMan
+agement.Tests\Application
+\Commands\DeleteCustomerH
+andlerTests.cs:line 41
+  --- End of stack trace 
+from previous location 
+---
+    Passed CustomerManage
+ment.Tests.Application.Co
+mmands.CreateCustomerHand
+lerTests.Handle_Duplicate
+Email_ShouldThrowDomainEx
+ception [3 ms]
+    Passed CustomerManage
+ment.Tests.API.AuthContro
+llerTests.Login_ValidSale
+sRepCredentials_ShouldRet
+urnSalesRepRole [121 ms]
+    Passed CustomerManage
+ment.Tests.Application.Co
+mmands.CreateCustomerHand
+lerTests.Handle_NewCustom
+er_ShouldCreateSuccessful
+ly [3 ms]
+    Passed CustomerManage
+ment.Tests.API.AuthContro
+llerTests.Login_InvalidCr
+edentials_ShouldReturn401
+ [1 ms]
+  [xUnit.net 
+  00:00:00.37]     Cust
+  omerManagement.Tests.
+  API.AuthControllerTes
+  ts.Login_ValidAdminCr
+  edentials_ShouldRetur
+  n200WithToken [FAIL]
+  [xUnit.net 
+00:00:00.37]       
+Expected type to be Micro
+soft.AspNetCore.Mvc.OkObj
+ectResult, but found Micr
+osoft.AspNetCore.Mvc.Unau
+thorizedObjectResult.
+  [xUnit.net 
+00:00:00.37]       Stack 
+Trace:
+  [xUnit.net 
+00:00:00.37]            
+at FluentAssertions.Execu
+tion.XUnit2TestFramework.
+Throw(String message)
+>   Failed CustomerManage
+ment.Tests.API.AuthContro
+llerTests.Login_ValidAdmi
+nCredentials_ShouldReturn
+200WithToken [46 ms]
+    Error Message:
+     Expected type to be 
+Microsoft.AspNetCore.Mvc.
+OkObjectResult, but 
+found Microsoft.AspNetCor
+e.Mvc.UnauthorizedObjectR
+esult.
+    Stack Trace:
+       at FluentAssertion
+s.Execution.XUnit2TestFra
+mework.Throw(String 
+message)
+     at FluentAssertions.
+Execution.TestFrameworkPr
+ovider.Throw(String 
+message)
+     at FluentAssertions.
+Execution.DefaultAssertio
+nStrategy.HandleFailure(S
+tring message)
+     at FluentAssertions.
+Execution.AssertionScope.
+FailWith(Func`1 
+failReasonFunc)
+     at FluentAssertions.
+Execution.AssertionScope.
+FailWith(Func`1 
+failReasonFunc)
+     at FluentAssertions.
+Execution.AssertionScope.
+FailWith(String message)
+     at FluentAssertions.
+Types.TypeAssertions.Be(T
+ype expected, String 
+because, Object[] 
+becauseArgs)
+     at FluentAssertions.
+Primitives.ReferenceTypeA
+ssertions`2.BeOfType(Type
+ expectedType, String 
+because, Object[] 
+becauseArgs)
+     at FluentAssertions.
+Primitives.ReferenceTypeA
+ssertions`2.BeOfType[T](S
+tring because, Object[] 
+becauseArgs)
+     at CustomerManagemen
+t.Tests.API.AuthControlle
+rTests.Login_ValidAdminCr
+edentials_ShouldReturn200
+WithToken() in C:\Custome
+rManagement\backend\tests
+\CustomerManagement.Tests
+\API\AuthControllerTests.
+cs:line 44
+     at System.RuntimeMet
+hodHandle.InvokeMethod(Ob
+ject target, Void** 
+arguments, Signature 
+sig, Boolean 
+isConstructor)
+     at System.Reflection
+.MethodBaseInvoker.Invoke
+WithNoArgs(Object obj, 
+BindingFlags invokeAttr)
+    Passed CustomerManage
+ment.Tests.Infrastructure
+.CustomerRepositoryTests.
+GetAllAsync_WhenAdmin_Sho
+uldReturnAllCustomers 
+[729 ms]
+    Passed CustomerManage
+ment.Tests.Infrastructure
+.ContactRepositoryTests.A
+ddAsync_ShouldSaveContact
+ToDatabase [726 ms]
+    Passed CustomerManage
+ment.Tests.Infrastructure
+.ContactRepositoryTests.G
+etByCustomerIdAsync_Shoul
+dReturnContactsForCustome
+r [41 ms]
+    Passed CustomerManage
+ment.Tests.Infrastructure
+.CustomerRepositoryTests.
+EmailExistsAsync_ShouldRe
+turnTrue_CaseInsensitive 
+[43 ms]
+    Passed CustomerManage
+ment.Tests.Infrastructure
+.ContactRepositoryTests.H
+asPrimaryContactAsync_Whe
+nPrimaryExists_ShouldRetu
+rnTrue [4 ms]
+> Test Run Failed.
+  Total tests: 53
+       Passed: 51
+>      Failed: 2
+   Total time: 1.5400 
+Seconds
+
+

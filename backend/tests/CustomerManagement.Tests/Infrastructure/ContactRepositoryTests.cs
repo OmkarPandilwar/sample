@@ -25,9 +25,10 @@ public class ContactRepositoryTests
         using var context = CreateInMemoryContext();
 
         var customer = Customer.Create(
-            "John", "Smith", "john@acme.com",
-            CustomerSegment.Corporate,
-            CustomerClassification.Gold);
+            "John Smith", "john@acme.com",
+            CustomerClassification.VIP,
+            CustomerType.Business,
+            CustomerSegment.Enterprise);
 
         await context.Customers.AddAsync(customer);
         await context.SaveChangesAsync();
@@ -55,9 +56,10 @@ public class ContactRepositoryTests
         using var context = CreateInMemoryContext();
 
         var customer = Customer.Create(
-            "John", "Smith", "john@acme.com",
-            CustomerSegment.Corporate,
-            CustomerClassification.Gold);
+            "John Smith", "john@acme.com",
+            CustomerClassification.VIP,
+            CustomerType.Business,
+            CustomerSegment.Enterprise);
 
         await context.Customers.AddAsync(customer);
         await context.SaveChangesAsync();
@@ -82,9 +84,10 @@ public class ContactRepositoryTests
         using var context = CreateInMemoryContext();
 
         var customer = Customer.Create(
-            "John", "Smith", "john@acme.com",
-            CustomerSegment.Corporate,
-            CustomerClassification.Gold);
+            "John Smith", "john@acme.com",
+            CustomerClassification.VIP,
+            CustomerType.Business,
+            CustomerSegment.Enterprise);
 
         await context.Customers.AddAsync(customer);
         await context.SaveChangesAsync();
@@ -102,9 +105,10 @@ public class ContactRepositoryTests
         using var context = CreateInMemoryContext();
 
         var customer = Customer.Create(
-            "John", "Smith", "john@acme.com",
-            CustomerSegment.Corporate,
-            CustomerClassification.Gold);
+            "John Smith", "john@acme.com",
+            CustomerClassification.VIP,
+            CustomerType.Business,
+            CustomerSegment.Enterprise);
 
         await context.Customers.AddAsync(customer);
         await context.SaveChangesAsync();

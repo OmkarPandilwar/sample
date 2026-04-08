@@ -1,0 +1,227 @@
+﻿
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(29,29): 
+error CS0117: 
+'CustomerSegment' 
+does not contain a 
+definition for 
+'Corporate' [C:\Custom
+erManagement\backend\t
+ests\CustomerManagemen
+t.Tests\CustomerManage
+ment.Tests.csproj]
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(30,36): 
+error CS0117: 'Custome
+rClassification' does 
+not contain a 
+definition for 'Gold' 
+[C:\CustomerManagement
+\backend\tests\Custome
+rManagement.Tests\Cust
+omerManagement.Tests.c
+sproj]
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(59,29): 
+error CS0117: 
+'CustomerSegment' 
+does not contain a 
+definition for 
+'Corporate' [C:\Custom
+erManagement\backend\t
+ests\CustomerManagemen
+t.Tests\CustomerManage
+ment.Tests.csproj]
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(60,36): 
+error CS0117: 'Custome
+rClassification' does 
+not contain a 
+definition for 'Gold' 
+[C:\CustomerManagement
+\backend\tests\Custome
+rManagement.Tests\Cust
+omerManagement.Tests.c
+sproj]
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(86,29): 
+error CS0117: 
+'CustomerSegment' 
+does not contain a 
+definition for 
+'Corporate' [C:\Custom
+erManagement\backend\t
+ests\CustomerManagemen
+t.Tests\CustomerManage
+ment.Tests.csproj]
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(87,36): 
+error CS0117: 'Custome
+rClassification' does 
+not contain a 
+definition for 'Gold' 
+[C:\CustomerManagement
+\backend\tests\Custome
+rManagement.Tests\Cust
+omerManagement.Tests.c
+sproj]
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(106,29):
+ error CS0117: 
+'CustomerSegment' 
+does not contain a 
+definition for 
+'Corporate' [C:\Custom
+erManagement\backend\t
+ests\CustomerManagemen
+t.Tests\CustomerManage
+ment.Tests.csproj]
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(107,36):
+ error CS0117: 'Custom
+erClassification' 
+does not contain a 
+definition for 'Gold' 
+[C:\CustomerManagement
+\backend\tests\Custome
+rManagement.Tests\Cust
+omerManagement.Tests.c
+sproj]
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(29,29): 
+error CS0117: 
+'CustomerSegment' 
+does not contain a 
+definition for 
+'Corporate' [C:\Custom
+erManagement\backend\t
+ests\CustomerManagemen
+t.Tests\CustomerManage
+ment.Tests.csproj]
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(30,36): 
+error CS0117: 'Custome
+rClassification' does 
+not contain a 
+definition for 'Gold' 
+[C:\CustomerManagement
+\backend\tests\Custome
+rManagement.Tests\Cust
+omerManagement.Tests.c
+sproj]
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(59,29): 
+error CS0117: 
+'CustomerSegment' 
+does not contain a 
+definition for 
+'Corporate' [C:\Custom
+erManagement\backend\t
+ests\CustomerManagemen
+t.Tests\CustomerManage
+ment.Tests.csproj]
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(60,36): 
+error CS0117: 'Custome
+rClassification' does 
+not contain a 
+definition for 'Gold' 
+[C:\CustomerManagement
+\backend\tests\Custome
+rManagement.Tests\Cust
+omerManagement.Tests.c
+sproj]
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(86,29): 
+error CS0117: 
+'CustomerSegment' 
+does not contain a 
+definition for 
+'Corporate' [C:\Custom
+erManagement\backend\t
+ests\CustomerManagemen
+t.Tests\CustomerManage
+ment.Tests.csproj]
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(87,36): 
+error CS0117: 'Custome
+rClassification' does 
+not contain a 
+definition for 'Gold' 
+[C:\CustomerManagement
+\backend\tests\Custome
+rManagement.Tests\Cust
+omerManagement.Tests.c
+sproj]
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(106,29):
+ error CS0117: 
+'CustomerSegment' 
+does not contain a 
+definition for 
+'Corporate' [C:\Custom
+erManagement\backend\t
+ests\CustomerManagemen
+t.Tests\CustomerManage
+ment.Tests.csproj]
+C:\CustomerManagement\
+backend\tests\Customer
+Management.Tests\Infra
+structure\ContactRepos
+itoryTests.cs(107,36):
+ error CS0117: 'Custom
+erClassification' 
+does not contain a 
+definition for 'Gold' 
+[C:\CustomerManagement
+\backend\tests\Custome
+rManagement.Tests\Cust
+omerManagement.Tests.c
+sproj]
+
+

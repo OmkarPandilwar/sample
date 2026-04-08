@@ -1,0 +1,402 @@
+﻿
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(17,29): 
+error CS0117: 
+'CustomerSegment' does 
+not contain a definition 
+for 'Corporate' [C:\Custo
+merManagement\backend\tes
+ts\CustomerManagement.Tes
+ts\CustomerManagement.Tes
+ts.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(18,36): 
+error CS0117: 
+'CustomerClassification' 
+does not contain a 
+definition for 'Gold' [C:
+\CustomerManagement\backe
+nd\tests\CustomerManageme
+nt.Tests\CustomerManageme
+nt.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rTests.cs(16,26): error 
+CS0117: 'CustomerType' 
+does not contain a 
+definition for 
+'Corporate' [C:\CustomerM
+anagement\backend\tests\C
+ustomerManagement.Tests\C
+ustomerManagement.Tests.c
+sproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(21,18): 
+error CS1061: 'Customer' 
+does not contain a 
+definition for 
+'FirstName' and no 
+accessible extension 
+method 'FirstName' 
+accepting a first 
+argument of type 
+'Customer' could be 
+found (are you missing a 
+using directive or an 
+assembly reference?) [C:\
+CustomerManagement\backen
+d\tests\CustomerManagemen
+t.Tests\CustomerManagemen
+t.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rTests.cs(31,26): error 
+CS0117: 'CustomerType' 
+does not contain a 
+definition for 
+'Corporate' [C:\CustomerM
+anagement\backend\tests\C
+ustomerManagement.Tests\C
+ustomerManagement.Tests.c
+sproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(32,29): 
+error CS0117: 
+'CustomerSegment' does 
+not contain a definition 
+for 'Corporate' [C:\Custo
+merManagement\backend\tes
+ts\CustomerManagement.Tes
+ts\CustomerManagement.Tes
+ts.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(33,36): 
+error CS0117: 
+'CustomerClassification' 
+does not contain a 
+definition for 'Gold' [C:
+\CustomerManagement\backe
+nd\tests\CustomerManageme
+nt.Tests\CustomerManageme
+nt.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rTests.cs(43,26): error 
+CS0117: 'CustomerType' 
+does not contain a 
+definition for 
+'Corporate' [C:\CustomerM
+anagement\backend\tests\C
+ustomerManagement.Tests\C
+ustomerManagement.Tests.c
+sproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(45,29): 
+error CS0117: 
+'CustomerSegment' does 
+not contain a definition 
+for 'Corporate' [C:\Custo
+merManagement\backend\tes
+ts\CustomerManagement.Tes
+ts\CustomerManagement.Tes
+ts.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(46,36): 
+error CS0117: 
+'CustomerClassification' 
+does not contain a 
+definition for 'Gold' [C:
+\CustomerManagement\backe
+nd\tests\CustomerManageme
+nt.Tests\CustomerManageme
+nt.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Ad
+dContactHandlerTests.cs(3
+4,82): error CS1503: 
+Argument 5: cannot 
+convert from 'bool' to 
+'string?' [C:\CustomerMan
+agement\backend\tests\Cus
+tomerManagement.Tests\Cus
+tomerManagement.Tests.csp
+roj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Ad
+dContactHandlerTests.cs(3
+4,93): error CS1503: 
+Argument 7: cannot 
+convert from 'string' to 
+'bool' [C:\CustomerManage
+ment\backend\tests\Custom
+erManagement.Tests\Custom
+erManagement.Tests.csproj
+]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rTests.cs(55,26): error 
+CS0117: 'CustomerType' 
+does not contain a 
+definition for 
+'Corporate' [C:\CustomerM
+anagement\backend\tests\C
+ustomerManagement.Tests\C
+ustomerManagement.Tests.c
+sproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Qu
+eries\GetAllCustomersHand
+lerTests.cs(29,33): 
+error CS0117: 
+'CustomerSegment' does 
+not contain a definition 
+for 'Corporate' [C:\Custo
+merManagement\backend\tes
+ts\CustomerManagement.Tes
+ts\CustomerManagement.Tes
+ts.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Qu
+eries\GetAllCustomersHand
+lerTests.cs(29,67): 
+error CS0117: 
+'CustomerClassification' 
+does not contain a 
+definition for 'Gold' [C:
+\CustomerManagement\backe
+nd\tests\CustomerManageme
+nt.Tests\CustomerManageme
+nt.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Qu
+eries\GetAllCustomersHand
+lerTests.cs(31,68): 
+error CS0117: 
+'CustomerClassification' 
+does not contain a 
+definition for 
+'Platinum' [C:\CustomerMa
+nagement\backend\tests\Cu
+stomerManagement.Tests\Cu
+stomerManagement.Tests.cs
+proj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Application\Qu
+eries\GetAllCustomersHand
+lerTests.cs(34,30): 
+error CS0854: An 
+expression tree may not 
+contain a call or 
+invocation that uses 
+optional arguments [C:\Cu
+stomerManagement\backend\
+tests\CustomerManagement.
+Tests\CustomerManagement.
+Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(58,29): 
+error CS0117: 
+'CustomerSegment' does 
+not contain a definition 
+for 'Corporate' [C:\Custo
+merManagement\backend\tes
+ts\CustomerManagement.Tes
+ts\CustomerManagement.Tes
+ts.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(59,36): 
+error CS0117: 
+'CustomerClassification' 
+does not contain a 
+definition for 'Gold' [C:
+\CustomerManagement\backe
+nd\tests\CustomerManageme
+nt.Tests\CustomerManageme
+nt.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(64,36): 
+error CS0117: 
+'CustomerClassification' 
+does not contain a 
+definition for 
+'Platinum' [C:\CustomerMa
+nagement\backend\tests\Cu
+stomerManagement.Tests\Cu
+stomerManagement.Tests.cs
+proj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(66,18): 
+error CS1061: 'Customer' 
+does not contain a 
+definition for 
+'FirstName' and no 
+accessible extension 
+method 'FirstName' 
+accepting a first 
+argument of type 
+'Customer' could be 
+found (are you missing a 
+using directive or an 
+assembly reference?) [C:\
+CustomerManagement\backen
+d\tests\CustomerManagemen
+t.Tests\CustomerManagemen
+t.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(69,18): 
+error CS1061: 'Customer' 
+does not contain a 
+definition for 
+'UpdatedAt' and no 
+accessible extension 
+method 'UpdatedAt' 
+accepting a first 
+argument of type 
+'Customer' could be 
+found (are you missing a 
+using directive or an 
+assembly reference?) [C:\
+CustomerManagement\backen
+d\tests\CustomerManagemen
+t.Tests\CustomerManagemen
+t.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rTests.cs(71,54): error 
+CS0117: 
+'CustomerSegment' does 
+not contain a definition 
+for 'SmallBusiness' [C:\C
+ustomerManagement\backend
+\tests\CustomerManagement
+.Tests\CustomerManagement
+.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rTests.cs(76,26): error 
+CS0117: 'CustomerType' 
+does not contain a 
+definition for 
+'Corporate' [C:\CustomerM
+anagement\backend\tests\C
+ustomerManagement.Tests\C
+ustomerManagement.Tests.c
+sproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(78,29): 
+error CS0117: 
+'CustomerSegment' does 
+not contain a definition 
+for 'Corporate' [C:\Custo
+merManagement\backend\tes
+ts\CustomerManagement.Tes
+ts\CustomerManagement.Tes
+ts.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(79,36): 
+error CS0117: 
+'CustomerClassification' 
+does not contain a 
+definition for 'Gold' [C:
+\CustomerManagement\backe
+nd\tests\CustomerManageme
+nt.Tests\CustomerManageme
+nt.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Infrastructure
+\CustomerRepositoryTests.
+cs(63,85): error CS0117: 
+'CustomerSegment' does 
+not contain a definition 
+for 'SmallBusiness' [C:\C
+ustomerManagement\backend
+\tests\CustomerManagement
+.Tests\CustomerManagement
+.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(92,29): 
+error CS0117: 
+'CustomerSegment' does 
+not contain a definition 
+for 'Corporate' [C:\Custo
+merManagement\backend\tes
+ts\CustomerManagement.Tes
+ts\CustomerManagement.Tes
+ts.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(93,36): 
+error CS0117: 
+'CustomerClassification' 
+does not contain a 
+definition for 'Gold' [C:
+\CustomerManagement\backe
+nd\tests\CustomerManageme
+nt.Tests\CustomerManageme
+nt.Tests.csproj]
+C:\CustomerManagement\bac
+kend\tests\CustomerManage
+ment.Tests\Domain\Custome
+rEntityTests.cs(95,18): 
+error CS1061: 'Customer' 
+does not contain a 
+definition for 
+'FullName' and no 
+accessible extension 
+method 'FullName' 
+accepting a first 
+argument of type 
+'Customer' could be 
+found (are you missing a 
+using directive or an 
+assembly reference?) [C:\
+CustomerManagement\backen
+d\tests\CustomerManagemen
+t.Tests\CustomerManagemen
+t.Tests.csproj]
+
+

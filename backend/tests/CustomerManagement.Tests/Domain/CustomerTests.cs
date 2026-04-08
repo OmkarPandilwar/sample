@@ -13,7 +13,7 @@ public class CustomerTests
         // Arrange & Act
         var customer = Customer.Create(
             "Test Customer", "test@example.com", CustomerClassification.Active,
-            CustomerType.Corporate, CustomerSegment.Enterprise);
+            CustomerType.Business, CustomerSegment.Enterprise);
 
         // Assert
         customer.CustomerName.Should().Be("Test Customer");
@@ -28,7 +28,7 @@ public class CustomerTests
         // Act
         Action act = () => Customer.Create(
             "", "test@example.com", CustomerClassification.Active,
-            CustomerType.Corporate, CustomerSegment.Enterprise);
+            CustomerType.Business, CustomerSegment.Enterprise);
 
         // Assert
         act.Should().Throw<DomainException>().WithMessage("*required*");
@@ -40,7 +40,7 @@ public class CustomerTests
         // Act
         Action act = () => Customer.Create(
             "Name", "invalid-email", CustomerClassification.Active,
-            CustomerType.Corporate, CustomerSegment.Enterprise);
+            CustomerType.Business, CustomerSegment.Enterprise);
 
         // Assert
         act.Should().Throw<DomainException>().WithMessage("*email*");
@@ -52,7 +52,7 @@ public class CustomerTests
         // Arrange
         var customer = Customer.Create(
             "Name", "test@example.com", CustomerClassification.Active,
-            CustomerType.Corporate, CustomerSegment.Enterprise);
+            CustomerType.Business, CustomerSegment.Enterprise);
 
         // Act
         customer.Deactivate();
@@ -68,12 +68,12 @@ public class CustomerTests
         // Arrange
         var customer = Customer.Create(
             "Old Name", "old@example.com", CustomerClassification.Prospect,
-            CustomerType.Individual, CustomerSegment.SmallBusiness);
+            CustomerType.Individual, CustomerSegment.SMB);
 
         // Act
         customer.Update(
             "New Name", "new@example.com", CustomerClassification.VIP,
-            CustomerType.Corporate, CustomerSegment.Enterprise);
+            CustomerType.Business, CustomerSegment.Enterprise);
 
         // Assert
         customer.CustomerName.Should().Be("New Name");
